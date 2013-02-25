@@ -25,4 +25,5 @@
 
 ## NEED HELP
 * Only getting the first and last lists from the for `for` loop in Utils.getTracksByTag
-* Once I have the lists all filled out, how do I save that to a JSON? 
+* Once I have the lists all filled out, how do I save that to a JSON?
+* Who actually plays the song? As in, where is the `R.player.play({` going to live?
