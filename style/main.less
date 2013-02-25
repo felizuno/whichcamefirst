@@ -22,6 +22,11 @@ html {
 		}
 	}
 
+	.close {
+		float: right;
+		margin-right: 1.5em;
+	}
+
 	.title {
 		font-family: 'Luckiest Guy', cursive;		
 	}
@@ -30,6 +35,21 @@ html {
 		margin: 0;
 		width: 100%;
 		height: 100%;
+
+	}
+
+	.icon {
+		&.facebook {
+			background-image: url('/img/facebook.png');
+		}
+
+		&.twitter {
+			background-image: url('/img/twitter.png');
+		}
+
+		&.google {
+			background-image: url('/img/google.png');
+		}
 
 	}
 }
@@ -64,14 +84,25 @@ html {
 	line-height: 1.6em;	
 	box-shadow: 1px 1px 5px @db;
 
+	.title {
+		text-shadow: 1px 1px 0 @lt;
+	}
+
 	ul {
 		list-style: none;
 		padding: 0 1em;
 
 		li {
-			display: inline-block;
-			text-align: center;
 			width: 30%;
+				display: inline-block;
+				text-align: center;
+			
+			.icon{
+				height: 2em;
+				width: 2em;
+				background-size: contain;
+				margin: 0 auto;
+			}
 		}
 	}
 }
