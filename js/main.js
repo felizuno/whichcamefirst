@@ -69,23 +69,7 @@
 		},
 
 		init: function() {
-			//Close buttons
-			$('.close').click(function() {
-				$(this).closest('.panel').fadeOut('fast');
-			});
-			// Header behavior
-			$('.header').click(function() {
-				var $el = $(this);
-
-				if ($el.hasClass('hiding')) {
-					$el.animate({left: '+=90%'});
-				} else {
-					$el.animate({left: '-=90%'});					
-				}
-
-				$el.toggleClass('hiding');
-			});
-
+			this.homeView = new Views.homeView();
 			this.user = new Models.User(this.Utils.fakeUser);
 			this.currentGame = new Models.Game(this.Utils.fakeGame);
 		}

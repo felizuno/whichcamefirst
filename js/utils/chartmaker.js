@@ -12,10 +12,15 @@
 				console.log('Asking last FM for the ' + yearString + ' list');
 			 	$.getJSON(url, function(data) {
 			 		self.lastFMDataStore[yearString] = data.toptracks.track;
+					
+					if (yearString == '2013') {
+						// NEED A BETTER WAY TO MAKE SURE WE UNPACK AFTER THE LISTS ARE ALL HERE
+						self._UnpackLastFMData();
+					}
 			 	});
 			};
 
-			var politeLastFMCall = _.throttle(rawLastFMCall, 1000);
+			var politeLastFMCall = _.throttle(rawLastFMCall, 100);
 
 			for (var year = 1960; year <= 2013; year++) {
 				var yearString = year.toString();
@@ -25,8 +30,6 @@
 
 				politeLastFMCall(url, yearString);
 			}
-
-			self._UnpackLastFMData();
 		},
 
 		//	FOR TESTING
@@ -53,7 +56,8 @@
 		//
 
 		_UnpackLastFMData: function() {
-			_.each(this.lastFMDataStore, function(v, i) {
+			_.each(this.lastFMDataStore, function(v, k) {
+				console.log('Unpacking the ' + k + ' list')
 				// v is an array of last.fm track objects that look like this:
 				// {
 				// 	"name":"Yet Again",				
