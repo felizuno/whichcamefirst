@@ -11,6 +11,7 @@ html {
 	font-size: 22px;
 	background-image: url('/img/cbf.png');	
 	color: @db;
+	
 	.button {
 		cursor: pointer;
 
@@ -19,20 +20,27 @@ html {
 			background-color: @shadow
 		}
 	}
+
+	.title {
+		font-family: 'Luckiest Guy', cursive;		
+	}
 }
 
 body {
 	margin: 0;
 	width: 100%;
 	height: 100%;
+
 }
 
 .header {
 	font-size: 24px;
 	margin-top: 1em;
-	background-color: @red;
-	color: @lt;
 	padding: 0.5em 0;
+	background-color: @red;
+	box-shadow: 2px 3px 7px 0 @db;
+	color: @lt;
+	text-shadow: 1px 1px 0 @db;
 
 	h1,
 	h4 {
@@ -55,6 +63,7 @@ body {
 
 #loginpanel {
 	background-color: @dt;
+	box-shadow: 1px 1px 5px @db;
 
 	ul {
 		list-style: none;
