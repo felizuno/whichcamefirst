@@ -1,8 +1,10 @@
 <html>
 <head>
 	<title>Which Came First</title>
+    <link rel="stylesheet/less" type="text/css" href="style/main.less">
     <script src="https://rdio.com/api/api.js?client_id=iRtrEwlL04cOUIHFo5wIcA"></script>
     <script src="/lib/jquery-1.9.0.js"></script>
+    <script src="/lib/less-1.3.0.min.js"></script>
     <script src="/lib/underscore-min.js"></script>
     <script src="/lib/backbone.js.min.0.9.0.js"></script>
     <script src="/js/main.js"></script> 
@@ -10,6 +12,23 @@
     <script src="/js/utils/chartmaker.js"></script>
 </head>
 <body>
-	HELLO WORLD
+	<div class="header">
+		<h1>Which Came First???</h1>
+		<h4>A music game powered by Rdio and Last.FM</h4>
+	</div>
+	<div id="loginpanel" class="panel">
+		<div>You can log in using one of the following OAuth services:</div>
+		<ul>
+			<li class="button">Facebook</li>
+			<li class="button">Twitter</li>
+			<li class="button">Rdio</li>
+		</ul>
+	</div>
+
+	<div id="gametypechooser" class="panel">
+		<div class="button">Private Game</div>
+		<div class="button">Public Game</div>
+		<div class="button">Global Game</div>
+	</div>
 </body>
 </html>
