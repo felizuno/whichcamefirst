@@ -1,0 +1,73 @@
+@red: #A64826;	// 166, 72, 38
+@db: #403124;	// 64, 49, 36
+@lb: #A6774E;	// 166, 119, 78
+@dt: #D9A362;	// 217, 163, 98
+@lt: #D9C49C;	// 217, 196, 156
+@shadow: rgba(64, 49, 36, 0.5);
+
+
+
+html {
+	font-size: 22px;
+	background-image: url('/img/cbf.png');	
+	color: @db;
+	.button {
+		cursor: pointer;
+
+		&:active {
+			color: @lt;
+			background-color: @shadow
+		}
+	}
+}
+
+body {
+	margin: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.header {
+	font-size: 24px;
+	margin-top: 1em;
+	background-color: @red;
+	color: @lt;
+	padding: 0.5em 0;
+
+	h1,
+	h4 {
+		margin: 0 auto;
+		width: 100%;
+		text-align: center;
+	}
+}
+
+.panel {
+	font-size: 22px;
+	overflow: hidden;
+	margin: 1em auto;
+	width: 80%;
+	text-align: center;
+	border-radius: 1em;
+	padding: 1em 0;
+	line-height: 1.6em;	
+}
+
+#loginpanel {
+	background-color: @dt;
+
+	ul {
+		list-style: none;
+		padding: 0 1em;
+
+		li {
+			display: inline-block;
+			text-align: center;
+			width: 30%;
+		}
+	}
+}
+
+#gametypechooser {
+
+}
