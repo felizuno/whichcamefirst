@@ -22,6 +22,10 @@
 	});
 	Views.gameSelectView = Backbone.View.extend({});
 	Views.gameLobbyView = Backbone.View.extend({});
-	Views.roundView = Backbone.View.extend({});
+	Views.roundView = Backbone.View.extend({
+		render: function() {},
+		switchAlbumPosition: function() {},
+		updatePlaybackIndicators: function() {}
+	});
 	Views.headsUpPanel = Backbone.View.extend({});
 })();

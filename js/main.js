@@ -2,7 +2,7 @@
 	window.WCF = {
 		Utils: {
 			chartMaker: {},
-			fakeUser: {
+			fakeUserConfig: {
 				authToken: '8df7g6as9as8fguh',
 				id: 'foo',
 				vanityName: 'John Doe',
@@ -17,7 +17,7 @@
 				}
 			},
 
-			fakeGame: {
+			fakeGameConfig: {
 				owner: 'userdId1',
 				players: [
 					'userId1:3',
@@ -27,6 +27,7 @@
 				],
 				rounds: [
 					{
+						roundNumber: 1,
 						albumA: 'albumId',
 						albumB: 'albumId2',
 						results: [
@@ -37,6 +38,7 @@
 						]
 					},
 					{
+						roundNumber: 2,
 						albumA: 'albumId',
 						albumB: 'albumId2',
 						results: [
@@ -47,6 +49,7 @@
 						]
 					},
 					{
+						roundNumber: 3,
 						albumA: 'albumId',
 						albumB: 'albumId2',
 						results: [
@@ -56,6 +59,7 @@
 					}
 				],
 				nextRound: {
+					roundNumber: 4,
 					albumA: 'albumId',
 					albumB: 'albumId2',
 					results: [
@@ -72,8 +76,8 @@
 		init: function() {
 			this.homeView = new Views.homeView();
 
-			this.user = new Models.User(this.Utils.fakeUser);
-			this.currentGame = new Models.Game(this.Utils.fakeGame);
+			this.user = new Models.User(this.Utils.fakeUserConfig);
+			this.currentGame = new Models.Game(this.Utils.fakeGameConfig);
 		}
 	};
 
