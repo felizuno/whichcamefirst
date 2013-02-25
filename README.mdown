@@ -17,6 +17,12 @@
 * Leaving a game to return to the lobby (or ending current session)
 
 
+## FUTURE DREAMS (ALTERNATE GAME TYPES)
+* Movies
+* Presidents (for kids)
+* Scientific discoveries
+* World records
+
 ## NEED HELP
 * Only getting the first and last lists from the for `for` loop in Utils.getTracksByTag
 * Once I have the lists all filled out, how do I save that to a JSON? 
