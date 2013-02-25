@@ -74,7 +74,9 @@
 		},
 
 		init: function() {
-			this.homeView = new Views.homeView();
+			this.homeView = new Views.homeView({
+				el: $('body')
+			});
 
 			this.user = new Models.User(this.Utils.fakeUserConfig);
 			this.currentGame = new Models.Game(this.Utils.fakeGameConfig);
