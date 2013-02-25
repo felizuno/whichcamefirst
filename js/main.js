@@ -73,7 +73,6 @@
 			$('.close').click(function() {
 				$(this).closest('.panel').fadeOut('fast');
 			});
-
 			// Header behavior
 			$('.header').click(function() {
 				var $el = $(this);
@@ -86,6 +85,9 @@
 
 				$el.toggleClass('hiding');
 			});
+
+			this.user = new Models.User(this.Utils.fakeUser);
+			this.currentGame = new Models.Game(this.Utils.fakeGame);
 		}
 	};
 
