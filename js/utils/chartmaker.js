@@ -1,5 +1,5 @@
 (function() {
-
+	// USED TO CREATE THE CHARTS FOR EACH YEAR
 	var chartByYear = {
 		lastFMDataStore: {},
 

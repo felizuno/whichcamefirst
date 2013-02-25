@@ -18,6 +18,7 @@
 			},
 
 			fakeGame: {
+				owner: 'userdId1',
 				players: [
 					'userId1:3',
 					'userId2:2',
@@ -62,7 +63,7 @@
 					]					
 				},
 				settings: {
-					dateRange: [1994, 2013],
+					dateRanges: [1994, 2013],
 					isPrivate: true
 				}
 			}
@@ -70,7 +71,7 @@
 
 		init: function() {
 			this.homeView = new Views.homeView();
-			
+
 			this.user = new Models.User(this.Utils.fakeUser);
 			this.currentGame = new Models.Game(this.Utils.fakeGame);
 		}
