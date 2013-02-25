@@ -1,0 +1,22 @@
+# Which Came First
+### A music game powered by Rdio and Last.FM
+
+## TODO
+* Unpacking the Last.FM results and adding the Rdio data
+* Oauth buttons
+* Saving a user
+* Starting a new game
+* Loading one of your games in progress
+* Starting the round
+* Playing the round
+	* Playback
+	* Animations
+	* Validation
+* Ending the round (behind the scenes)
+* Ending the round (data/display for user)
+* Leaving a game to return to the lobby (or ending current session)
+
+
+## NEED HELP
+* Only getting the first and last lists from the for `for` loop in Utils.getTracksByTag
+* Once I have the lists all filled out, how do I save that to a JSON? 

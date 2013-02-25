@@ -1,6 +1,5 @@
 (function() {
-	window.Models = {
-	};
+	window.Models = {};
 	Models.User = Backbone.Model.extend({
 		initialize: function() {},
 	});
@@ -17,8 +16,7 @@
 		initialize: function() {},
 	});
 
-	window.Views = {
-	};
+	window.Views = {};
 	Views.homeView = Backbone.View.extend({
 		initialize: function() {
 			//Close buttons

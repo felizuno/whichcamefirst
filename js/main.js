@@ -70,6 +70,7 @@
 
 		init: function() {
 			this.homeView = new Views.homeView();
+			
 			this.user = new Models.User(this.Utils.fakeUser);
 			this.currentGame = new Models.Game(this.Utils.fakeGame);
 		}
