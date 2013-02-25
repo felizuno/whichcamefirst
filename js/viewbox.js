@@ -1,6 +1,6 @@
 (function() {
 	window.Views = {};
-	Views.homeView = Backbone.View.extend({
+	Views.coreUI = Backbone.View.extend({
 		events: function() {
 			return {
 				'click .header': 'toggleHeader'

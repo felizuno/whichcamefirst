@@ -1,6 +1,6 @@
 (function() {
 	// USED TO CREATE THE CHARTS FOR EACH YEAR
-	var chartByYear = {
+	WCF.Utils.chartMaker = {
 		lastFMDataStore: {},
 
 		makeChart: function() {},
@@ -103,7 +103,4 @@
 			});
 		}
 	};// end chartMaker
-
-	_.extend(WCF.Utils.chartMaker, chartByYear);
-
 })();
