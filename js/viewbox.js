@@ -3,7 +3,8 @@
 	Views.coreUI = Backbone.View.extend({
 		events: function() {
 			return {
-				'click .header': 'toggleHeader'
+				'click .header': 'toggleHeader',
+				'click .social': 'reportSocialInteraction'
 			}
 		},
 
@@ -14,7 +15,7 @@
 			});		
 		},
 
-		toggleHeader: function() {
+		toggleHeader0: function() {
 			var $el = $('.header');
 
 			if ($el.hasClass('hiding')) {
@@ -24,7 +25,11 @@
 			}
 
 			$el.toggleClass('hiding');
-		}
+		},
+
+		reportSocialInteraction: function(/*event??*/) {
+			// message the user model social things are getting clicked
+		}x
 	});
 	Views.gameSelectView = Backbone.View.extend({});
 	Views.gameLobbyView = Backbone.View.extend({});
