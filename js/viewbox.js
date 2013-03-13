@@ -9,9 +9,14 @@
 		},
 
 		initialize: function() {
-			//Close buttons
+			var self = this;
+			this.on('toggleHeader', this.toggleHeader);
 			$('.close').click(function() {
 				$(this).closest('.panel').slideUp('fast');
+			});
+
+			$('.gameselect').click(function() {
+				self.trigger('toggleHeader'); // IS THIS HOW YOU DO IT?
 			});
 		},
 
@@ -34,7 +39,11 @@
 	Views.gameSelectView = Backbone.View.extend({});
 	Views.gameLobbyView = Backbone.View.extend({});
 	Views.roundView = Backbone.View.extend({
-		render: function() {},
+		render: function() {
+			$('<div>')
+				.addClass('roundview')
+				.appendTo($el);
+		},
 		switchAlbumPosition: function() {},
 		updatePlaybackIndicators: function() {},
 		toggleLeaveRoundBanner: function() {}

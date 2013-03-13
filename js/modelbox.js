@@ -104,6 +104,10 @@
   ////////////////////////////////////////////////////////////////////////////////
   Models.Round = Backbone.Model.extend({
     initialize: function() {
+      this.set('roundView', new Views.roundView({
+        model: this,
+        el: $('body')
+      }));
       // Make a round view using the round
     },
     playSong: function() {},
