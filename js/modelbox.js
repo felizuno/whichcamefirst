@@ -103,16 +103,25 @@
 
   ////////////////////////////////////////////////////////////////////////////////
   Models.Round = Backbone.Model.extend({
+    events: function() {
+      return {
+        'click .album': 'playSong',
+        'click .submit': 'compareAge'
+      };
+    },
     initialize: function() {
+      // var roundView = new Views.RoundView({
       this.set('roundView', new Views.RoundView({
         model: this,
         el: $('body')
       }));
-      // Make a round view using the round
     },
     playSong: function() {},
-    compareAge: function() {},
-    endRound: function() {
+    compareAge: function() {
+      // Do the comparison, then
+      this._endRound()
+    },
+    _endRound: function() {
       this.trigger('currentRoundOver'); // THIS LOOKS GHETTO AND WRONG
     },    
   });
