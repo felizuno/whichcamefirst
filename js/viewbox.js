@@ -1,19 +1,34 @@
 (function() {
 	window.Views = {};
-	Views.coreUI = Backbone.View.extend({
+	Views.CoreUI = Backbone.View.extend({
 		events: function() {
 			return {
-				'click .header': 'toggleHeader',
 				'click .social': 'reportSocialInteraction'
 			}
 		},
 
 		initialize: function() {
 			var self = this;
-			this.on('toggleHeader', this.toggleHeader);
-			$('.close').click(function() {
-				$(this).closest('.panel').slideUp('fast');
+
+			$('.gameselect').click(function() {
+				self.trigger('toggleHeader'); // IS THIS HOW YOU DO IT?
 			});
+		},
+
+		reportSocialInteraction: function(/*event??*/) {
+			this.trigger('socialAction');
+		}
+	});
+	Views.HeaderBar = Backbone.View.extend({
+		events: function() {
+			return {
+				'click .header': 'toggleHeader'
+			}
+		},
+
+		initialize: function() {
+			var self = this;
+			this.on('toggleHeader', this.toggleHeader);
 
 			$('.gameselect').click(function() {
 				self.trigger('toggleHeader'); // IS THIS HOW YOU DO IT?
@@ -30,23 +45,29 @@
 			}
 
 			$el.toggleClass('hiding');
-		},
-
-		reportSocialInteraction: function(/*event??*/) {
-			this.trigger('socialAction');
 		}
 	});
-	Views.gameSelectView = Backbone.View.extend({});
-	Views.gameLobbyView = Backbone.View.extend({});
-	Views.roundView = Backbone.View.extend({
+	Views.GameSelectView = Backbone.View.extend({
+		initialize: function() {
+			var self = this;
+			
+			this.on('toggleHeader', this.toggleHeader);
+
+			$('.gameselect').click(function() {
+				self.trigger('toggleHeader'); // IS THIS HOW YOU DO IT?
+			});
+		},
+	});
+	Views.GameLobbyView = Backbone.View.extend({});
+	Views.RoundView = Backbone.View.extend({
 		render: function() {
-			$('<div>')
-				.addClass('roundview')
-				.appendTo($el);
+			// $('<div>')
+			// 	.addClass('roundview')
+			// 	.appendTo($el);
 		},
 		switchAlbumPosition: function() {},
 		updatePlaybackIndicators: function() {},
 		toggleLeaveRoundBanner: function() {}
 	});
-	Views.headsUpPanel = Backbone.View.extend({});
+	Views.ReadsUpPanel = Backbone.View.extend({});
 })();

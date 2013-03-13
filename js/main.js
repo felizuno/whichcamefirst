@@ -2,8 +2,12 @@
 	window.WCF = {
 		Utils: {},
 		init: function() {
-			this.coreUI = new Views.coreUI({
+			this.headerBar = new Views.HeaderBar({
 				el: $('body')
+			});
+
+			this.roundSelectView = new Views.GameSelectView({
+				el: $('#gametypechooser')
 			});
 
 			this.user = new Models.User(this.Utils.fakeUserConfig);

@@ -104,7 +104,7 @@
   ////////////////////////////////////////////////////////////////////////////////
   Models.Round = Backbone.Model.extend({
     initialize: function() {
-      this.set('roundView', new Views.roundView({
+      this.set('roundView', new Views.RoundView({
         model: this,
         el: $('body')
       }));
