@@ -18,10 +18,10 @@
 		fakeGameConfig: {
 			owner: 'userdId1',
 			players: [
-				'userId1:3:2',
-				'userId2:2:2',
+				'userId1:3:1',
+				'userId2:2:1',
 				'userId3:2:0',
-				'userId4:0:0'
+				'userId4:1:0'
 			],
 			rounds: [
 				{

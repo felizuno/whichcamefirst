@@ -12,10 +12,10 @@
 			//Close buttons
 			$('.close').click(function() {
 				$(this).closest('.panel').slideUp('fast');
-			});		
+			});
 		},
 
-		toggleHeader0: function() {
+		toggleHeader: function() {
 			var $el = $('.header');
 
 			if ($el.hasClass('hiding')) {
@@ -28,8 +28,8 @@
 		},
 
 		reportSocialInteraction: function(/*event??*/) {
-			// message the user model social things are getting clicked
-		}x
+			this.trigger('socialAction');
+		}
 	});
 	Views.gameSelectView = Backbone.View.extend({});
 	Views.gameLobbyView = Backbone.View.extend({});
