@@ -1,5 +1,7 @@
 (function() {
 	window.Views = {};
+
+	//////////////////////////////////////////////////////////////////////
 	Views.CoreUI = Backbone.View.extend({
 		events: function() {
 			return {
@@ -8,17 +10,14 @@
 		},
 
 		initialize: function() {
-			var self = this;
-
-			$('.gameselect').click(function() {
-				self.trigger('toggleHeader'); // IS THIS HOW YOU DO IT?
-			});
 		},
 
 		reportSocialInteraction: function(/*event??*/) {
 			this.trigger('socialAction');
 		}
 	});
+
+	//////////////////////////////////////////////////////////////////////
 	Views.HeaderBar = Backbone.View.extend({
 		events: function() {
 			return {
@@ -30,34 +29,32 @@
 			var self = this;
 			this.on('toggleHeader', this.toggleHeader);
 
+			// CAN'T MOVE THIS TO GAMESELECTVIEW!!!
 			$('.gameselect').click(function() {
 				self.trigger('toggleHeader'); // IS THIS HOW YOU DO IT?
 			});
 		},
 
 		toggleHeader: function() {
-			var $el = $('.header');
+			var $header = this.$el;
 
-			if ($el.hasClass('hiding')) {
-				$el.animate({left: '+=90%'});
+			if ($header.hasClass('hiding')) {
+				$header.animate({left: '+=90%'});
 			} else {
-				$el.animate({left: '-=90%'});					
+				$header.animate({left: '-=90%'});					
 			}
 
-			$el.toggleClass('hiding');
+			$header.toggleClass('hiding');
 		}
 	});
+
+	//////////////////////////////////////////////////////////////////////
 	Views.GameSelectView = Backbone.View.extend({
 		initialize: function() {
-			var self = this;
-			
-			this.on('toggleHeader', this.toggleHeader);
-
-			$('.gameselect').click(function() {
-				self.trigger('toggleHeader'); // IS THIS HOW YOU DO IT?
-			});
 		},
 	});
+
+	//////////////////////////////////////////////////////////////////////
 	Views.GameLobbyView = Backbone.View.extend({});
 	Views.RoundView = Backbone.View.extend({
 		render: function() {
@@ -69,5 +66,7 @@
 		updatePlaybackIndicators: function() {},
 		toggleLeaveRoundBanner: function() {}
 	});
+
+	//////////////////////////////////////////////////////////////////////
 	Views.ReadsUpPanel = Backbone.View.extend({});
 })();

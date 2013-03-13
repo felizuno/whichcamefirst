@@ -3,7 +3,7 @@
 		Utils: {},
 		init: function() {
 			this.headerBar = new Views.HeaderBar({
-				el: $('body')
+				el: $('.header')
 			});
 
 			this.roundSelectView = new Views.GameSelectView({
