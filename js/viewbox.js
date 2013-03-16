@@ -2,22 +2,6 @@
 	window.Views = {};
 
 	//////////////////////////////////////////////////////////////////////
-	Views.CoreUI = Backbone.View.extend({
-		events: function() {
-			return {
-				'click .social': 'reportSocialInteraction'
-			}
-		},
-
-		initialize: function() {
-		},
-
-		reportSocialInteraction: function(/*event??*/) {
-			this.trigger('socialAction');
-		}
-	});
-
-	//////////////////////////////////////////////////////////////////////
 	Views.HeaderBar = Backbone.View.extend({
 		events: function() {
 			return {
@@ -27,12 +11,8 @@
 
 		initialize: function() {
 			var self = this;
-			this.on('toggleHeader', this.toggleHeader);
+			this.listenTo(WCF.gameSelectView, 'toggleHeader', this.toggleHeader);
 
-			// CAN'T MOVE THIS TO GAMESELECTVIEW!!!
-			$('.gameselect').click(function() {
-				self.trigger('toggleHeader'); // IS THIS HOW YOU DO IT?
-			});
 		},
 
 		toggleHeader: function() {
@@ -41,7 +21,7 @@
 			if ($header.hasClass('hiding')) {
 				$header.animate({left: '+=90%'});
 			} else {
-				$header.animate({left: '-=90%'});					
+				$header.animate({left: '-=90%'});
 			}
 
 			$header.toggleClass('hiding');
@@ -51,16 +31,40 @@
 	//////////////////////////////////////////////////////////////////////
 	Views.GameSelectView = Backbone.View.extend({
 		initialize: function() {
+			var self = this; 
+			// CAN'T MOVE THIS TO GAMESELECTVIEW!!!
+			$('.gameselect').click(function() {
+				WCF.currentGame.trigger('showRoundView'); // IS THIS HOW YOU DO IT?
+			});
 		},
 	});
 
 	//////////////////////////////////////////////////////////////////////
 	Views.GameLobbyView = Backbone.View.extend({});
 	Views.RoundView = Backbone.View.extend({
+		initialize: function() {
+			// this.listenTo(this.model, "change:currentRound", _.bind(this.doSomething, this));
+			this.roundModel = this.model.get('currentRound');
+			if (!$('.roundview')) {
+				var $el = $('<div>')
+					.addClass('roundview')
+					.appendTo('body');
+
+				this.el = $el;
+			} else {
+				this.el = $('.roundview');
+			}
+
+
+			this.listenTo(this.roundModel, 'change:roundNumber', this.render);
+			// this.listenTo(this.roundModel, 'change:', _.bind( , this));
+			// this.listenTo(this.roundModel, 'change:', _.bind( , this));
+			// this.listenTo(this.roundModel, 'change:', _.bind( , this));
+			// this.listenTo(this.roundModel, 'change:', _.bind( , this));
+			// this.listenTo(this.roundModel, 'change:', _.bind( , this));
+		},
 		render: function() {
-			// $('<div>')
-			// 	.addClass('roundview')
-			// 	.appendTo($el);
+			WCF.headerBar.toggleHeader();
 		},
 		switchAlbumPosition: function() {},
 		updatePlaybackIndicators: function() {},

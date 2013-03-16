@@ -68,6 +68,8 @@
           self.get('competitorScores').push([playerId, userWinRatio]);
         }
       });
+
+      this._initializeRoundView();
     },
     
     changeRound: function() {
@@ -85,6 +87,12 @@
     },
 
     // Internal utils
+    _initializeRoundView: function() {
+      this.set('roundView', new Views.RoundView({
+        model: this
+      }));
+    },
+
     // ==============
     _createNewEdgeRound: function(callback) {
       var _pushNewRound = function() {};
@@ -103,18 +111,8 @@
 
   ////////////////////////////////////////////////////////////////////////////////
   Models.Round = Backbone.Model.extend({
-    events: function() {
-      return {
-        'click .album': 'playSong',
-        'click .submit': 'compareAge'
-      };
-    },
     initialize: function() {
-      // var roundView = new Views.RoundView({
-      this.set('roundView', new Views.RoundView({
-        model: this,
-        el: $('body')
-      }));
+      // this.listenTo(WCF.currentGame, 'showRoundView', this.initializeRoundView);
     },
     playSong: function() {},
     compareAge: function() {
