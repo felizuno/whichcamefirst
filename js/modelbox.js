@@ -17,16 +17,6 @@
   ////////////////////////////////////////////////////////////////////////////////
   Models.User = Backbone.Model.extend({
     initialize: function() {},
-    
-    events: function() {
-      return {
-        'socialAction': 'respondToSocialAction'
-      };
-    },
-
-    respondToSocialAction: function() {
-      // Respond to whatever, I need to pass more arguments
-    }
   });
   
   ////////////////////////////////////////////////////////////////////////////////

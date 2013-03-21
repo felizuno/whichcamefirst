@@ -5,38 +5,65 @@
 	Views.HeaderBar = Backbone.View.extend({
 		events: function() {
 			return {
-				'click .header': 'toggleHeader'
+				'click': 'toggleHeader'
 			}
 		},
 
 		initialize: function() {
-			var self = this;
-			this.listenTo(WCF.gameSelectView, 'toggleHeader', this.toggleHeader);
-
+			this.hiding = false;
+			this.listenTo(WCF.gameSelectView, 'gameChosen', this.toggleHeader);
 		},
 
 		toggleHeader: function() {
-			var $header = this.$el;
-
-			if ($header.hasClass('hiding')) {
-				$header.animate({left: '+=90%'});
+			if (!this.hiding) {
+				this.$el.animate({left: '-=90%'});
+				this.hiding = true;
 			} else {
-				$header.animate({left: '-=90%'});
+				this.$el.animate({left: '+=90%'});
+				this.hiding = false;
 			}
+		}
+	});
 
-			$header.toggleClass('hiding');
+	//////////////////////////////////////////////////////////////////////
+	Views.SocialSelectView = Backbone.View.extend({
+		events: function() {
+			return {
+				'click .social': 'socialAction',
+				'click .close': 'close'
+			};
+		},
+		initialize: function() {
+			var self = this;
+			// this.listenTo(WCF.socialSelectView, 'all', close);
+		},
+		socialAction: function() {
+		},
+
+		close: function() {
+			this.$el.fadeOut('fast');
 		}
 	});
 
 	//////////////////////////////////////////////////////////////////////
 	Views.GameSelectView = Backbone.View.extend({
-		initialize: function() {
-			var self = this; 
-			// CAN'T MOVE THIS TO GAMESELECTVIEW!!!
-			$('.gameselect').click(function() {
-				WCF.currentGame.trigger('showRoundView'); // IS THIS HOW YOU DO IT?
-			});
+		events: function() {
+			return {
+				'click .gameselect': 'gameChosen',
+				'click .close': 'close'
+			};
 		},
+		initialize: function() {
+			var self = this;
+			// this.listenTo(WCF.socialSelectView, 'all', close);
+		},
+		gameChosen: function() {
+			this.trigger('gameChosen');
+			this.close();
+		},
+		close: function() {
+			this.$el.fadeOut('fast');
+		}
 	});
 
 	//////////////////////////////////////////////////////////////////////
@@ -45,32 +72,31 @@
 		initialize: function() {
 			// this.listenTo(this.model, "change:currentRound", _.bind(this.doSomething, this));
 			this.roundModel = this.model.get('currentRound');
-			if (!$('.roundview')) {
-				var $el = $('<div>')
-					.addClass('roundview')
-					.appendTo('body');
-
-				this.el = $el;
-			} else {
-				this.el = $('.roundview');
-			}
-
-
 			this.listenTo(this.roundModel, 'change:roundNumber', this.render);
-			// this.listenTo(this.roundModel, 'change:', _.bind( , this));
-			// this.listenTo(this.roundModel, 'change:', _.bind( , this));
-			// this.listenTo(this.roundModel, 'change:', _.bind( , this));
-			// this.listenTo(this.roundModel, 'change:', _.bind( , this));
-			// this.listenTo(this.roundModel, 'change:', _.bind( , this));
 		},
 		render: function() {
 			WCF.headerBar.toggleHeader();
+			var rawTemplate = $("#round-view-template").text();
+			var template = _.template(rawTemplate);
+			var html = template(this.roundModel.attributes);
+
+			if ($('.roundview')) {
+				$('.roundview').remove();
+			}
+
+			var $el = $('<div>')
+				.addClass('roundview')
+				.html(html)
+				.appendTo('body');
+
+			this.el = $el;
 		},
-		switchAlbumPosition: function() {},
+		swapAlbumPosition: function() {},
 		updatePlaybackIndicators: function() {},
 		toggleLeaveRoundBanner: function() {}
 	});
 
 	//////////////////////////////////////////////////////////////////////
 	Views.ReadsUpPanel = Backbone.View.extend({});
+	//////////////////////////////////////////////////////////////////////
 })();
