@@ -32,7 +32,7 @@
 				'click .social': 'socialAction',
 				'click .close': 'close'
 			};
-		},
+		},  
 		initialize: function() {
 			var self = this;
 			// this.listenTo(WCF.socialSelectView, 'all', close);
