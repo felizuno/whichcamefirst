@@ -3,10 +3,11 @@
 		Utils: {},
 		init: function() {
 			var self = this;
+			
 			this.user = new Models.User(this.Utils.fakeUserConfig);
-			this.currentGame = new Models.Game2({difficulty: 'easy'}); // this.Utils.fakeGameConfig);
-			this.headerBar = new Views.HeaderBar({});
+			this.currentGame = new Models.Game({difficulty: 'easy'}); // this.Utils.fakeGameConfig);
 
+			this.headerBar = new Views.HeaderBar({});
 			this.appPanel = new Views.Panel({
 				title: 'You log in using one of your existing accounts:',
 				id: 'apppanel',

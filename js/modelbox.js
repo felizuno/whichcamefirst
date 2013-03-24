@@ -1,102 +1,64 @@
 (function() {
   window.Models = {};
-  /*
-  * User - The global player - WCF.user
-  *
-  * Game - The global game object - WCF.currentGame
-  *
-  * Round - Contained by the game, which has the following rounds after init
-  *     WCF.currentGame.rounds - An array of the rounds needed for all the games players
-  *     WCF.currentGame.currentRound - The round that the player is about to play 
-  *                     (or is currently playing)
-  *     WCF.currentGame.nextRound - The round that should be played next if the player
-  *                     enters a new round.
-  *
-  */
-
   ////////////////////////////////////////////////////////////////////////////////
   Models.User = Backbone.Model.extend({
     initialize: function() {},
   });
-  
+
   ////////////////////////////////////////////////////////////////////////////////
   Models.Game = Backbone.Model.extend({
-    initialize: function() {
-      this.set('competitorScores', []);
-      this.resumeLastPlayedRound();
-    },
-    
-    events: function() {
-      return {
-        'currentRoundOver': 'changeRound'
-      };
+    initialize: function(config) {
+      this.difficulty = config.difficulty;
+      this.setNewRound();
+      this.pastRounds = []; // this should be a Backbone collection
     },
 
-    // Round Behavior
-    // ==============
-    resumeLastPlayedRound: function() {
-      var self = this;
-
-      _.each(this.get('players'), function(v, i) {
-        var playerData = v.split(':');
-        
-        var playerId = playerData[0];
-        var playerCurrentRound = playerData[1];
-        var playerWins = playerData[2];
-
-        var userWinRatio = Math.floor((playerWins / (playerCurrentRound -1)) * 100);
-
-        if (playerId == WCF.user.get('id')) {
-          var lastRoundIndex = Math.floor(playerData[1] - 1);
-          var lastRoundConfig = self.get('rounds')[lastRoundIndex];
-          var lastPlayedRound = new Models.Round(lastRoundConfig);
-          
-          console.log(playerData[1]);
-          self.set('currentRound', lastPlayedRound);
-          self.set('userWinRate', userWinRatio);
-        } else {
-          self.get('competitorScores').push([playerId, userWinRatio]);
-        }
-      });
-
-      this._initializeRoundView();
-    },
-    
-    changeRound: function() {
-      var nextRoundNumber = this.get('currentRoundNumber') + 1;
-      var roundModel = _.find(this.get('rounds'), function(round) {
-        return round.roundNumber == nextRoundNumber;
-      });
-
-      if (!roundModel) {
-        this.set('currentRound', null);
-        this._createNewEdgeRound();
-      } else {
-        this.set('currentRound', roundModel);
+    setNewRound: function() {
+      if (this.get('currentRound')) {
+       // this.get('pastRounds').push(this.get('currentRound')); 
       }
-    },
-
-    // Internal utils
-    _initializeRoundView: function() {
-      this.set('roundView', new Views.RoundView({
-        model: this
-      }));
+      this.set('currentRound', new Models.Round(this.get('difficulty')));
     }
   });
 
   ////////////////////////////////////////////////////////////////////////////////
   Models.Round = Backbone.Model.extend({
-    initialize: function() {
-      // this.listenTo(WCF.currentGame, 'showRoundView', this.initializeRoundView);
+    initialize: function(difficulty) {
+      this.getAlbums(difficulty);
+      // this.initRoundView();
     },
-    playSong: function() {},
-    compareAge: function() {
-      // Do the comparison, then
-      this._endRound()
-    },
-    _endRound: function() {
-      this.trigger('currentRoundOver'); // THIS LOOKS GHETTO AND WRONG
-    },    
-  });
+    getAlbums: function(difficulty) {
+      var self = this;
+      var years = [];
+      var albums = [];
+      
+      var getRandomYear = function(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      };
+      var getSecondYear = function(min, max, taken) {
+        var result = getRandomYear(min, max);
+        if (result === taken) {
+          return getSecondYear(min, max, taken);
+        } else {
+          return result;
+        }
+      };
 
+      years.push(getRandomYear(1990, 1999));
+      years.push(getSecondYear(1990, 1999, years[0]));
+
+      _.each(years, function(v, i) {
+        var url = 'http://ws.audioscrobbler.com/2.0/?method=tag.getTopTracks&tag=' 
+            + v.toString()
+            + '&limit=250&api_key=d43e672a5af20763d43866fcbbf2d201&format=json&callback=?';
+
+        $.getJSON(url, function(data) {
+          console.log(data);
+          // self.get('albums').push(data);
+        });
+      });
+
+    }
+  });
+  
 })();
