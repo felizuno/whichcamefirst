@@ -2,21 +2,26 @@
 	window.WCF = {
 		Utils: {},
 		init: function() {
+			var self = this;
 			// this.user = new Models.User(this.Utils.fakeUserConfig);
 			// this.currentGame = new Models.Game2(); // this.Utils.fakeGameConfig);
 			this.headerBar = new Views.HeaderBar({});
-			this.gameSelectView = new Views.GameSelectView({});
-			this.socialSelectView = new Views.SocialSelectView({});
+
 			this.appPanel = new Views.Panel({
-				title: 'Which Came First? - App panel',
+				title: 'You log in using one of your existing accounts:',
 				id: 'apppanel',
-				package: '<button>Test button</button>'
+				package: $.trim($('#login-view-template').html())
 			});
+
 			this.userPanel = new Views.Panel({
-				title: 'Which Came First? - User Input Panel',
+				title: 'New Game - Choose a game type:',
 				id: 'userpanel',
-				package: '<button>Test button</button>'
+				package: $.trim($('#game-type-chooser-template').html())
 			});
+
+			setTimeout(function() {
+				self.appPanel.show();
+			}, 2000);
 		}
 	};
 
