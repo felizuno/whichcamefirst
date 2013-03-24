@@ -11,28 +11,25 @@
     <script src="/lib/backbone.js.min.0.9.0.js"></script>
     <script src="/js/main.js"></script> 
     <script src="/js/modelbox.js"></script>
-    <script src="/js/models.js"></script>
-    <script src="/js/viewbox.js"></script>
+    <script src="/js/models.js"></script> 
+   <script src="/js/viewbox.js"></script>
     <script src="/js/utils/mockdata.js"></script>
     <script src="/js/utils/chartmaker.js"></script>
 
-	<script id="round-view-template" type="text/template">
-		<div class="roundnumber">Round <%= roundNumber %></div>
-		<h2>Which Came first?</h2>
-		<div class="album1" id="<%= albumA  %>">
-			<img src="">
-		</div>
-		<div class="album2" id="<%= albumB  %>">
-			<img src="">
-		</div>
+	<script id="header-template" type="text/template">
+			<h1>Which Came First???</h1>
+			<h4>A music game powered by Rdio and Last.FM</h4>
     </script>
-</head>
-<body>
-	<div class="header title">
-		<h1>Which Came First???</h1>
-		<h4>A music game powered by Rdio and Last.FM</h4>
-	</div>
-	<div id="loginpanel" class="panel">
+	
+	<script id="panel-template" type="text/template">
+    	<div class="header">
+    		<div class="close button">X</div>
+    		<div class="title"><%= title %></div>
+    	</div>
+		<div class="body"><%= typeof(package) !== 'undefined' ?  package : '' %></div>
+    </script>
+
+	<script id="login-view-template" type="text/template">
 		<div class="close button">X</div>
 		<div class="title">You log in using one of your existing accounts:</div>
 		<ul>
@@ -49,9 +46,9 @@
 				<lh>Google</lh>
 			</li>
 		</ul>
-	</div>
+    </script>
 
-	<div id="gametypechooser" class="panel">
+	<script id="game-type-chooser-template" type="text/template">
 		<div class="close button">X</div>
 		<div class="title">New Game - Choose a game type:</div>
 		<ul>
@@ -59,6 +56,19 @@
 			<li class="button gameselect">Public Games</li>
 			<li class="button gameselect">Global Games</li>
 		</ul>
-	</div>
-</body>
+    </script>
+
+	<script id="round-view-template" type="text/template">
+		<div class="roundnumber">Round <%= roundNumber %></div>
+		<h2>Which Came first?</h2>
+		<div class="album1" id="<%= albumA  %>">
+			<img src="">
+		</div>
+		<div class="album2" id="<%= albumB  %>">
+			<img src="">
+		</div>
+    </script>
+
+</head>
+<body></body>
 </html>

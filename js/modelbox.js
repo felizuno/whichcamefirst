@@ -81,21 +81,6 @@
       this.set('roundView', new Views.RoundView({
         model: this
       }));
-    },
-
-    // ==============
-    _createNewEdgeRound: function(callback) {
-      var _pushNewRound = function() {};
-      var newRoundConfig = {
-        roundNumber: this.get('rounds').length() + 1
-      };
-
-      var newRound = new Models.Round(newRoundConfig);
-      this.get('rounds').push(newRound); // Is this really how to do this?
-
-      if (!this.currentRound) {
-        this.set('currentRound', newRound);
-      }
     }
   });
 
