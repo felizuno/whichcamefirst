@@ -3,8 +3,8 @@
 		Utils: {},
 		init: function() {
 			var self = this;
-			// this.user = new Models.User(this.Utils.fakeUserConfig);
-			// this.currentGame = new Models.Game2(); // this.Utils.fakeGameConfig);
+			this.user = new Models.User(this.Utils.fakeUserConfig);
+			this.currentGame = new Models.Game2({difficulty: 'easy'}); // this.Utils.fakeGameConfig);
 			this.headerBar = new Views.HeaderBar({});
 
 			this.appPanel = new Views.Panel({
