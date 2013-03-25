@@ -20,6 +20,27 @@
 			<h4>A music game powered by Rdio and Last.FM</h4>
     </script>
 	
+	<script id="round-view-template" type="text/template">
+		<div class="left album">
+			<img src="<%= albums[0].image[3]['#text'] %>">
+			<div class="trackinfo">
+				<div class="albumname"><%= albums[0].name %></div>
+				<div class="artistname"><%= albums[0].artist.name %></div>
+			</div>
+		</div>
+
+		<div class="right album">
+			<img src="<%= albums[1].image[3]['#text'] %>">
+			<div class="trackinfo">
+				<div class="albumname"><%= albums[1].name %></div>
+				<div class="artistname"><%= albums[1].artist.name %></div>
+			</div>
+		</div>
+		
+		<div class="switch button roundbutton">Switch</div>
+		<div class="submit button roundbutton">Submit</div>
+    </script>
+	
 	<script id="panel-template" type="text/template">
     	<div class="header">
     		<div class="close button">X</div>
@@ -51,17 +72,6 @@
 			<li class="button gameselect">Public Games</li>
 			<li class="button gameselect">Global Games</li>
 		</ul>
-    </script>
-
-	<script id="round-view-template" type="text/template">
-		<div class="roundnumber">Round <%= roundNumber %></div>
-		<h2>Which Came first?</h2>
-		<div class="album1" id="<%= albumA  %>">
-			<img src="">
-		</div>
-		<div class="album2" id="<%= albumB  %>">
-			<img src="">
-		</div>
     </script>
 
 </head>

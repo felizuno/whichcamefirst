@@ -77,11 +77,26 @@
 	});
 
 	Views.RoundView = Backbone.View.extend({
-		initialize: function() {
+		events: function() {
+			return {
+				'click .album': 'swapAlbumPosition'
+			};
+		},
+		initialize: function(config) {
+			this.listenTo(this.model, 'update:round', this.render);
+			console.log(this.model.attributes);
+			this.$el = $('<div>')
+				.addClass('roundview')
+				.appendTo('body');
 		},
 		render: function() {
+			var rawTemplate = $.trim($('#round-view-template').html());
+			var template = _.template(rawTemplate, this.model.attributes);
+			this.$el.html(template);
 		},
-		swapAlbumPosition: function() {},
+		swapAlbumPosition: function() {
+			this.$el.find('.album').toggleClass('left right');
+		},
 		updatePlaybackIndicators: function() {},
 	});
 
