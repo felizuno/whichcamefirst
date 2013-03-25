@@ -79,7 +79,8 @@
 	Views.RoundView = Backbone.View.extend({
 		events: function() {
 			return {
-				'click .album': 'swapAlbumPosition'
+				'click .switch': 'swapAlbumPosition',
+				'click .album': 'updatePlayback'
 			};
 		},
 		initialize: function(config) {
@@ -97,7 +98,9 @@
 		swapAlbumPosition: function() {
 			this.$el.find('.album').toggleClass('left right');
 		},
-		updatePlaybackIndicators: function() {},
+		updatePlaybackIndicators: function(clicked) {
+			this.trigger('playback');
+		},
 	});
 
 })();

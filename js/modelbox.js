@@ -30,9 +30,8 @@
     },
     
     initRoundView: function() {
-      this.set('roundView', new Views.RoundView({
-        model: this
-      }));
+      this.set('roundView', new Views.RoundView({ model: this }));
+      this.listenTo(this.get('roundView'), 'playback', this.handlePlayback);
     },
 
     getAlbums: function(difficulty) {
@@ -66,7 +65,10 @@
           self.trigger('update:round');
         });
       });
+    },
 
+    handlePlayback: function() {
+      // play the appropriate song
     }
   });
   
