@@ -10,10 +10,11 @@
     <script src="/lib/underscore-min.js"></script>
     <script src="/lib/backbone.js.min.0.9.0.js"></script>
     <script src="/js/main.js"></script> 
-    <script src="/js/modelbox.js"></script>
-   <script src="/js/viewbox.js"></script>
-    <script src="/js/utils/mockdata.js"></script>
-    <script src="/js/utils/chartmaker.js"></script>
+    <script src="/js/models/game.js"></script>
+    <script src="/js/models/round.js"></script>
+    <script src="/js/views/header-view.js"></script>
+    <script src="/js/views/panel-view.js"></script>
+    <script src="/js/views/round-view.js"></script>
 
 	<script id="header-template" type="text/template">
 			<h1>Which Came First???</h1>
@@ -22,23 +23,28 @@
 	
 	<script id="round-view-template" type="text/template">
 		<div class="left album">
-			<img src="<%= albums[0].image[3]['#text'] %>">
-			<div class="trackinfo">
-				<div class="albumname"><%= albums[0].name %></div>
-				<div class="artistname"><%= albums[0].artist.name %></div>
+			<div class="album1">
+				<img src="<%= albums[0].image[3]['#text'] %>">
+				<div class="albuminfo">
+					<div class="albumname"><%= albums[0].name %></div>
+					<div class="artistname"><%= albums[0].artist.name %></div>
+					<div class="year" style="display:none"><%= albums[0].year %></div>
+				</div>
 			</div>
 		</div>
-
 		<div class="right album">
-			<img src="<%= albums[1].image[3]['#text'] %>">
-			<div class="trackinfo">
-				<div class="albumname"><%= albums[1].name %></div>
-				<div class="artistname"><%= albums[1].artist.name %></div>
+			<div class="album2">
+				<img src="<%= albums[1].image[3]['#text'] %>">
+				<div class="albuminfo">
+					<div class="albumname"><%= albums[1].name %></div>
+					<div class="artistname"><%= albums[1].artist.name %></div>
+					<div class="year" style="display:none"><%= albums[1].year %></div>
+				</div>
 			</div>
 		</div>
-		
 		<div class="switch button roundbutton">Switch</div>
 		<div class="submit button roundbutton">Submit</div>
+		<div class="nextround button roundbutton">Next<br>Round</div>
     </script>
 	
 	<script id="panel-template" type="text/template">
@@ -68,9 +74,9 @@
 
 	<script id="game-type-chooser-template" type="text/template">
 		<ul>
-			<li class="button gameselect">Private Games</li>
-			<li class="button gameselect">Public Games</li>
-			<li class="button gameselect">Global Games</li>
+			<li class="button gameselect">1980s</li>
+			<li class="button gameselect">1990s</li>
+			<li class="button gameselect">2000s</li>
 		</ul>
     </script>
 

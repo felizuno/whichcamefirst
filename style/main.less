@@ -118,22 +118,51 @@ html {
 .roundview {
 	position: absolute;
 	width: 100%;
-	top: 7em;
-	width: 100%;
+	top: 4em;
 
 	.roundbutton {
+		position: absolute;
+		left: 40%;
+		width: 20%;
 		text-align: center;
-		margin-top: 2em;
-		padding: 1em;
+	}
+
+	.nextround {
+		margin-top: -20em;
+	}
+
+	.switch{
+		top: 10em;
+	}
+
+	.submit {
+		top: 16em;
 	}
 	
 	.album {
-		margin: 3em;
+		position: relative;
+		margin: 8em;
 		text-align: center;
+		max-width: 30%;
+		
+		.albuminfo {
+			img {
+				box-shadow: 3px 0 rgba(0, 0, 0, 0.75);
+			}
+
+			margin-top: 1em;
+
+			.albumname {
+				font-size: 1.5em;
+				margin-bottom: .5em;
+			}
+
+			.artistname {}
+		}
 	}
 
 	.left {
-		float: left;
+		float: left;		
 	}
 
 	.right {
