@@ -10,7 +10,7 @@
     initRoundView: function() {
       this.set('roundView', new Views.RoundView({ model: this }));
       this.listenTo(this.get('roundView'), 'playback', this.handlePlayback);
-      this.listenTo(this.get('roundView'), 'submitanswer', this.analyzeAnswer);
+      this.listenTo(this.get('roundView'), 'submitanswer', this.respondToPlayerAnswer);
       this.listenTo(this.get('roundView'), 'endround', this.end);
     },
 
@@ -60,7 +60,7 @@
       // play the appropriate song
     },
 
-    analyzeAnswer: function() {
+    respondToPlayerAnswer: function() {
       var answer = this.get('roundView').answer;
       var answerAge = 0;
       var otherAge = 0;
@@ -74,6 +74,7 @@
         this.set('win', false);
       }
     },
+
     end: function() {
       this.trigger('roundover');
     }

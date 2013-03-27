@@ -5,7 +5,6 @@
 			this.set('name', 'Player 1'); // + Math.rand().toString());  // TODO: capture from user
 			this.set('round', 1);
 			this.set('wins', 0);
-			this.on('change:wins', this.updateWinRate);
 			this.listenTo(this.get('model'), 'win', this.addWin);
 			this.listenTo(this.get('model'), 'loss', this.updateRoundCount); // can this listen for two events?
 			this.set('shouldAutoSave', true);
@@ -17,6 +16,7 @@
 			var wins = this.get('wins') + 1;
 			console.log(wins);
 			this.set('wins', wins);
+			this.updateWinRate();
 		},
 		
 		updateWinRate: function() {
@@ -25,7 +25,9 @@
 		},
 
 		updateRoundCount: function() {
-			this.set('round', (this.get('round') + 1));
+			var round = (this.get('round') + 1);
+			this.set('round', round);
+			this.updateWinRate();
 		},
 
 		autoSave: function() {

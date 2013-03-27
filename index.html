@@ -17,9 +17,14 @@
     <script src="/js/views/panel-view.js"></script>
     <script src="/js/views/round-view.js"></script>
 
-	<script id="header-template" type="text/template">
+	<script id="welcome-header-template" type="text/template">
 			<h1>Which Came First???</h1>
 			<h4>A music game powered by Rdio and Last.FM</h4>
+    </script>
+	
+	<script id="round-header-template" type="text/template">
+			<h1>Round: <%= roundCount %></h1>
+			<h4>Your win rate is <%= player.get('winRate') %>% with <%= player.get('wins') %> wins.</h4>
     </script>
 	
 	<script id="round-view-template" type="text/template">

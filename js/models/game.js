@@ -3,8 +3,10 @@
   Models.Game = Backbone.Model.extend({
     initialize: function(config) {
       this.set('pastRounds', []); // TODO: this should be a Backbone collection
+      this.set('roundCount', 1);
       this.on('change:dateRange', this.setNewRound);
-      
+
+      this.set('header', new Views.HeaderBar({ model: this}));
       // Set up the panel where the user will input info into the game (i.e. decade choice)
       this.set('userPanel', new Views.Panel({ // TODO: rename to inputPanel (used for user input related to the game)
         title: 'New Game - Choose a game type:',
@@ -29,6 +31,7 @@
       // Stash the old round if there is one
       if (!!this.get('currentRound')) {
        this.get('pastRounds').push(this.get('currentRound'));
+       this.set('roundNumber', this.get('roundNumber') + 1);
        this.set('currentRound', null);
       }
       
@@ -36,6 +39,8 @@
       // when it ends with the 'roundover' event
       this.set('currentRound', new Models.Round({model: this}));
       this.listenTo(this.get('currentRound'), 'roundover', this.endOfCurrentRound);
+
+      this.trigger('newround');
     },
 
     endOfCurrentRound: function() {
