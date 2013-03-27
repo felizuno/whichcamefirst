@@ -10,17 +10,20 @@
 			};
 		},
 		initialize: function(config) {
-			this.listenTo(this.model, 'update:round', this.render);
+			this.listenTo(this.model, 'change:albums', this.render);
 			this.listenTo(this.model, 'change:win', this.revealRightAnswer);
-			// console.log(this.model.attributes);
 			this.$el = $('<div>')
 				.addClass('roundview')
 				.appendTo('body');
 		},
 		render: function() {
-			var rawTemplate = $.trim($('#round-view-template').html());
-			var template = _.template(rawTemplate, this.model.attributes);
-			this.$el.html(template);
+				// debugger;
+			var albums = this.model.get('albums');
+			// if (this.model.get('albums').length == 2) {
+				var rawTemplate = $.trim($('#round-view-template').html());
+				var template = _.template(rawTemplate, {albums: albums});
+				this.$el.html(template);
+			// }	
 		},
 		swapAlbumPositions: function(ms) {
 			if (ms != 0) {

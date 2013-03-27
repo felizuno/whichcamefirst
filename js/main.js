@@ -3,7 +3,6 @@
 	window.Models = {};
 	window.Views = {};
 	window.WCF = {
-
 		init: function() {
 			var self = this;
 
