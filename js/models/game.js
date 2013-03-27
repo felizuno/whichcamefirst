@@ -39,11 +39,14 @@
     },
 
     endOfCurrentRound: function() {
-      this.trigger('roundover');
       var youWon = this.get('currentRound').get('win');
+
       if (youWon) {
         this.trigger('win');
+      } else {
+        this.trigger('loss');
       }
+      
       this.setNewRound();
     }
   });
