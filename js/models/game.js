@@ -11,7 +11,7 @@
         id: 'userpanel',
         package: $.trim($('#game-type-chooser-template').html())
       }));
-      // ... and liste to it for when choices are made
+      // ... and listen to it for when choices are made
       this.listenTo(this.get('userPanel'), 'gamechosen', this.updateDecade);
 
       // player
@@ -35,7 +35,16 @@
       // Set the new round, which will manage most of the user actions and notify us
       // when it ends with the 'roundover' event
       this.set('currentRound', new Models.Round({model: this}));
-      this.listenTo(this.get('currentRound'), 'roundover', this.setNewRound);
+      this.listenTo(this.get('currentRound'), 'roundover', this.endOfCurrentRound);
+    },
+
+    endOfCurrentRound: function() {
+      this.trigger('roundover');
+      var youWon = this.get('currentRound').get('win');
+      if (youWon) {
+        this.trigger('win');
+      }
+      this.setNewRound();
     }
   });
 
