@@ -3,14 +3,19 @@
   Models.Game = Backbone.Model.extend({
     initialize: function(config) {
       this.set('pastRounds', []); // TODO: this should be a Backbone collection
+      this.on('change:dateRange', this.setNewRound);
+      
+      // Set up the panel where the user will input info into the game (i.e. decade choice)
       this.set('userPanel', new Views.Panel({ // TODO: rename to inputPanel (used for user input related to the game)
         title: 'New Game - Choose a game type:',
         id: 'userpanel',
         package: $.trim($('#game-type-chooser-template').html())
       }));
-
+      // ... and liste to it for when choices are made
       this.listenTo(this.get('userPanel'), 'gamechosen', this.updateDecade);
-      this.on('change:dateRange', this.setNewRound);
+
+      // player
+      this.set('player', new Models.Player({model: this}));
     },
 
     updateDecade: function() {
