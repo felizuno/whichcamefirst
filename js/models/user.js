@@ -2,12 +2,14 @@
 	
 	Models.Player = Backbone.Model.extend({
 		initialize: function() {
+			// this.set('shouldAutoSave', true);
 			this.set('name', 'Player 1'); // + Math.rand().toString());  // TODO: capture from user
 			this.set('round', 1);
 			this.set('wins', 0);
 			this.listenTo(this.get('model'), 'win', this.addWin);
 			this.listenTo(this.get('model'), 'loss', this.updateRoundCount); // can this listen for two events?
-			this.set('shouldAutoSave', true);
+			this.on('change:wins', this.updateWinRate);
+			this.on('change:round', this.updateWinRate);
 			this.autoSave();
 		},
 
@@ -16,7 +18,6 @@
 			var wins = this.get('wins') + 1;
 			console.log(wins);
 			this.set('wins', wins);
-			this.updateWinRate();
 		},
 		
 		updateWinRate: function() {
@@ -27,7 +28,6 @@
 		updateRoundCount: function() {
 			var round = (this.get('round') + 1);
 			this.set('round', round);
-			this.updateWinRate();
 		},
 
 		autoSave: function() {

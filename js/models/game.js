@@ -28,16 +28,17 @@
     },
 
     setNewRound: function() {
+       var roundNumber = this.get('roundCount') + 1;
       // Stash the old round if there is one
       if (!!this.get('currentRound')) {
-       this.get('pastRounds').push(this.get('currentRound'));
-       this.set('roundNumber', this.get('roundNumber') + 1);
-       this.set('currentRound', null);
+        this.get('pastRounds').push(this.get('currentRound'));
+        this.set('roundCount', roundNumber);
+        this.set('currentRound', null);
       }
       
       // Set the new round, which will manage most of the user actions and notify us
       // when it ends with the 'roundover' event
-      this.set('currentRound', new Models.Round({model: this}));
+      this.set('currentRound', new Models.Round({model: this, number: roundNumber}));
       this.listenTo(this.get('currentRound'), 'roundover', this.endOfCurrentRound);
 
       this.trigger('newround');
