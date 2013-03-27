@@ -5,6 +5,7 @@
       this.set('pastRounds', []); // TODO: this should be a Backbone collection
       this.set('userPanel', new Views.Panel({ // TODO: rename to inputPanel (used for user input related to the game)
         title: 'New Game - Choose a game type:',
+        id: 'userpanel',
         package: $.trim($('#game-type-chooser-template').html())
       }));
 
