@@ -8,7 +8,7 @@
 		},
 
 		initialize: function() {
-			this.listenTo(this.model, 'change:currentRound', _.debounce(this.updateRoundContent, 1000));
+			this.listenTo(this.model, 'change:currentRound', _.debounce(this.updateRoundContent, 500));
 			this.hiding = false;
 			this.$el = $('<div>')
 				.addClass('headerbar title')
