@@ -24,31 +24,33 @@
 				package: $.trim($('#login-view-template').html())
 			});
 
-			setTimeout(function() {
+			R.ready(function() {
 				if (!!window.R) {
-					R.ready(function() {
-						if (R.currentUser.get('isAnonymous')) {
+					if (R.currentUser.get('isAnonymous')) {
+						setTimeout(function() {
 							self.appPanel.show();
-						} else {
+						}, 1000);
+					} else if (!Rdio.get('userCollection')) {
+						Rdio.getUserCollection();
+						setTimeout(function() {
 							self.userPanel.show();
-						}
-					});
+						}, 1000);
+					}
 				} else {
+					// THERE IS NO R! Just roll out the other game types for now
 					self.userPanel.show();
 				}
-			}, 1000);
-
-			///////////////// EVENTS //////////////////
-			this.listenTo(this.userPanel, 'gamechosen', function() {
-				this.trigger('gamechosen'); // TODO: Add a way to show the panel and change sources
 			});
 
+			///////////////// EVENTS //////////////////
 			this.listenToOnce(this.appPanel, 'gordio', function() {
 				this.trigger('userdio');
 			});
 
-
-		}
+			this.listenTo(this.userPanel, 'gamechosen', function() { // NOT ONCE - see below
+				this.trigger('gamechosen'); // TODO: Add a way to show the panel and change sources
+			});
+		} // end init
 	}, Backbone.Events);
 
 	$(document).ready(function() {

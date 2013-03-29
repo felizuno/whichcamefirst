@@ -10,6 +10,7 @@
 			};
 		},   
 		initialize: function(config) {
+			var self = this;
 			var template = _.template($.trim($('#panel-template').html()), config);
 			this.$el = $('<div>')
 				.addClass('panel')
@@ -19,14 +20,24 @@
 			if (!!config.id) {
 				this.$el.addClass(config.id);
 			}
+
+			R.ready(function() {
+				if (!R.currentUser.get('isAnonymous')) {
+					self.includeRdioOption();
+				}
+			});
 		},
 		render: function() {
 			this.$el.html(template);
 		},
 		useRdio: function() {
 			this.trigger('gordio');
+			this.includeRdioOption();
 			this.close();
 			WCF.userPanel.show();
+		},
+		includeRdioOption: function() {
+			this.$el.find('.collection').show();
 		},
 		useGuest: function() {
 			this.close();
