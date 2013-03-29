@@ -4,7 +4,8 @@
 		events: function() {
 			return {
 				'click .gameselect': 'gameChosen',
-				'click .social': 'socialAction',
+				'click .userdio': 'useRdio',
+				'click .useguest': 'useGuest',
 				'click .close': 'close'
 			};
 		},   
@@ -22,7 +23,12 @@
 		render: function() {
 			this.$el.html(template);
 		},
-		socialAction: function() {
+		useRdio: function() {
+			this.trigger('gordio');
+			this.close();
+			WCF.userPanel.show();
+		},
+		useGuest: function() {
 			this.close();
 			WCF.userPanel.show();
 		},

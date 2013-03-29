@@ -17,19 +17,34 @@
 				id: 'userpanel',
 				package: $.trim($('#game-type-chooser-template').html())
 			});
-			// this.appPanel = new Views.Panel({
-			// 	title: 'You log in using one of your existing accounts:',
-			// 	id: 'apppanel',
-			// 	package: $.trim($('#login-view-template').html())
-			// });
+
+			this.appPanel = new Views.Panel({
+				title: 'Use your Rdio account?',
+				id: 'apppanel',
+				package: $.trim($('#login-view-template').html())
+			});
 
 			setTimeout(function() {
-				self.userPanel.show();
+				if (!!window.R) {
+					R.ready(function() {
+						if (R.currentUser.get('isAnonymous')) {
+							self.appPanel.show();
+						} else {
+							self.userPanel.show();
+						}
+					});
+				} else {
+					self.userPanel.show();
+				}
 			}, 1000);
 
 			///////////////// EVENTS //////////////////
 			this.listenTo(this.userPanel, 'gamechosen', function() {
-				this.trigger('gamechosen');
+				this.trigger('gamechosen'); // TODO: Add a way to show the panel and change sources
+			});
+
+			this.listenToOnce(this.appPanel, 'gordio', function() {
+				this.trigger('userdio');
 			});
 
 
