@@ -10,6 +10,7 @@
     <script src="/lib/underscore-min.js"></script>
     <script src="/lib/backbone.1.min.js"></script>
     <script src="/js/main.js"></script> 
+    <script src="/js/utils/util.js"></script> 
     <script src="/js/models/rdio.js"></script>
     <script src="/js/models/game.js"></script>
     <script src="/js/models/user.js"></script>
@@ -31,21 +32,21 @@
 	<script id="round-view-template" type="text/template">
 		<div class="left album">Older:
 			<div class="album1">
-				<img src="<%= albums[0].image[3]['#text'] %>">
+				<img src="<%= albums[0].image[3]['#text']/* || albums[0].icon*/ %>">
 				<div class="albuminfo">
 					<div class="albumname"><%= albums[0].name %></div>
-					<div class="artistname"><%= albums[0].artist.name %></div>
-					<div class="year" style="display:none"><%= albums[0].year %></div>
+					<div class="artistname"><%= albums[0].artist.name || albums[0].artist %></div>
+					<div class="year" style="display:none"><%= albums[0].year || albums[0].releaseDate %></div>
 				</div>
 			</div>
 		</div>
 		<div class="right album">Newer:
 			<div class="album2">
-				<img src="<%= albums[1].image[3]['#text'] %>">
+				<img src="<%= albums[1].image[3]['#text'] /*|| albums[1].icon*/ %>">
 				<div class="albuminfo">
 					<div class="albumname"><%= albums[1].name %></div>
-					<div class="artistname"><%= albums[1].artist.name %></div>
-					<div class="year" style="display:none"><%= albums[1].year %></div>
+					<div class="artistname"><%= albums[1].artist.name || albums[1].artist %></div>
+					<div class="year" style="display:none"><%= albums[1].year || albums[1].releaseDate %></div>
 				</div>
 			</div>
 		</div>

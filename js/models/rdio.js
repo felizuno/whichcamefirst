@@ -24,7 +24,6 @@
 			};
 
 			var	fetch = function(method, content, success) {
-				console.log(success);
 				R.ready(function() {
 					R.request({
 						method: method,
@@ -41,7 +40,7 @@
 			if (R.currentUser.get('key')) {
 				var userKey = R.currentUser.get('key')
 				// debugger;
-				fetch('getAlbumsInCollection', {user: userKey, count: 400}, collectionSuccess);
+				fetch('getAlbumsInCollection', {user: userKey, count: 200}, collectionSuccess);
 			}
 		},
 	});

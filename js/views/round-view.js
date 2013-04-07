@@ -17,7 +17,7 @@
 				.appendTo('body');
 		},
 		render: function() {
-				// debugger;
+			console.log('WHAT THE FUCK?');
 			var albums = this.model.get('albums');
 			// if (this.model.get('albums').length == 2) {
 				var rawTemplate = $.trim($('#round-view-template').html());

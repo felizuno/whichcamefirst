@@ -10,9 +10,16 @@
 
     updateDecade: function() {
       var decadeKey = WCF.userPanel.chosenDecade;   // will be in the format ###0s
-      var open = parseInt(decadeKey.replace('s', ''));      // i.e. 1990s -> 1990
-      var close = parseInt(decadeKey.replace('0s', '9'));   // i.e. 1990s -> 1999
-      this.set('dateRange', [open, close]);
+      var useRdio = /Rdio/.test(decadeKey);
+console.log('Use Rdio?: ' + useRdio);
+      if (!useRdio) {
+        var open = parseInt(decadeKey.replace('s', ''));      // i.e. 1990s -> 1990
+        var close = parseInt(decadeKey.replace('0s', '9'));   // i.e. 1990s -> 1999
+        this.set('dateRange', [open, close]);
+      } else {
+        // We're using an Rdio collection, so just launch the round
+        this.setNewRound();
+      }
     },
 
     setNewRound: function() {
