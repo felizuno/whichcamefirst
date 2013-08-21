@@ -1,5 +1,9 @@
 # Which Came First
 ### A music game powered by Rdio and Last.FM
+http://albumages.appspot.com
+
+NOTE: This game is WIP and currently optimized for my monitor's resolution. Your mileage may vary.
+NORE: Rdio Collection not working in the currently deployed version
 
 ## TODO
 * Unpacking the Last.FM results and adding the Rdio data
